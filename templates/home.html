@@ -1,6 +1,7 @@
 <html><head><title>TwitPNG: The LongTweet Image Generator by @mrasmus</title></head>
 <body><h1>TwitPNG</h1><h2>The LongTweet Image Generator by <a href="http://twitter.com/mrasmus" target="_blank">@mrasmus</a></h2><hr>
 <p>TwitPNG allows you to tweet arbitrarily long (read: more than 140 characters) tweets. It auto-splits your tweet when it becomes long enough, and renders the excess in an image uploaded as attached media to the tweet. Combined with Twitter's new "feature" of automatically rendering image previews for media attached to tweets, the full text of the tweet ends up rendering on the main Twitter timeline for anyone following you who is using the default settings. Basically, it's <a href="http://www.twitlonger.com/">TwitLonger</a> but the result appears as an image right in the timeline. Be as verbose as you want, there's no character limit to stop you now! :D</p>
+<p>To see it in action, here's the <a href="https://twitter.com/mrasmus/status/395887425878507520">announcement tweet</a>.</p>
 <hr>
 {% if user.is_authenticated %}
     <p><b>You are currently signed in as <a href="http://twitter.com/{{ user.username }}" target="_blank">@{{ user.username }}</a>. [ <a href="/twauth/logout">Logout</a> ]</b></p>
