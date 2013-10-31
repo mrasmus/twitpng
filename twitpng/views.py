@@ -39,11 +39,16 @@ def post_longtweet(request):
     twitter = Twython(settings.TWITTER_KEY, settings.TWITTER_SECRET,
                       user.oauth_token, user.oauth_secret)
 
+    success = False
     if len(tweetbody) <= 140:
-        twitter.update_status(status=tweetbody)
+        try:
+            twitter.update_status(status=tweetbody)
+            success = True
+        except:
+            pass
         result = '|'+ tweetbody +'|'
     else:
-        text = tweetbody[:(140-23)].rsplit(' ', 1)[0] + u'…'
+        text = tweetbody[:(140-33)].rsplit(' ', 1)[0] + u'…'
         imgtext = wraptext(u'…' + tweetbody[len(text)-1:])
         height = len(imgtext.splitlines()) * main_font.getsize(imgtext)[1]
         result = '|'+ text +'|' + imgtext + '|'
@@ -62,6 +67,7 @@ def post_longtweet(request):
             imgfile = open(filename, 'rb')
             twitter.update_status_with_media(status=text, media=imgfile)
             imgfile.close()
+            success = True
         except:
             pass
 
@@ -69,7 +75,10 @@ def post_longtweet(request):
 
 
     #return HttpResponse(result)
-    return HttpResponseRedirect('/tweetsent')
+    if (success):
+        return HttpResponseRedirect('/tweetsent')
+    else:
+        HttpResponse('There was some issue! D: Links in tweets occasionally break things, try your tweet again w/out links. Working on fixing that one.<br><br> Redirecting...<meta http-equiv="refresh" content="5;url=/" />')
 
 def tweet_sent(request):
     return HttpResponse('Tweet sent successfully! Redirecting...<meta http-equiv="refresh" content="3;url=/" />')
