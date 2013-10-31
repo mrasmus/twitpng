@@ -28,7 +28,6 @@ def wraptext(text, width=(IMAGE_WIDTH-2)*2):
             count += 1
         result += ' '.join(words[:count]) + '\n'
         words = words[count:]
-    print result
     return result
 
 def post_longtweet(request):
@@ -67,7 +66,6 @@ def post_longtweet(request):
             pass
 
         os.remove(filename)
-        print main_font.getsize(imgtext)
 
 
     #return HttpResponse(result)
