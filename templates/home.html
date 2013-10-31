@@ -1,0 +1,17 @@
+<html><head><title>TwitPNG: The LongTweet Image Generator by @mrasmus</title></head>
+<body><h1>TwitPNG</h1><h2>The LongTweet Image Generator by <a href="http://twitter.com/mrasmus" target="_blank">@mrasmus</a></h2><hr>
+<p>TwitPNG allows you to tweet arbitrarily long (read: more than 140 characters) tweets. It auto-splits your tweet when it becomes long enough, and renders the excess in an image uploaded as attached media to the tweet. Combined with Twitter's new "feature" of automatically rendering image previews for media attached to tweets, the full text of the tweet ends up rendering on the main Twitter timeline for anyone following you who is using the default settings. Basically, it's <a href="http://www.twitlonger.com/">TwitLonger</a> but the result appears as an image right in the timeline. Be as verbose as you want, there's no character limit to stop you now! :D</p>
+<hr>
+{% if user.is_authenticated %}
+    <p><b>You are currently signed in as <a href="http://twitter.com/{{ user.username }}" target="_blank">@{{ user.username }}</a>. [ <a href="/twauth/logout">Logout</a> ]</b></p>
+    <form action="/post_longtweet" method="post">Tweet Something Long:<textarea id="tweet" name="tweet" rows="6" cols="60" required onkeyup="document.getElementById('length').innerHTML = document.getElementById('tweet').value.length;"></textarea><input type="submit">{% csrf_token %}</form>
+    <p>That tweet is <span id="length">0</span> characters long. Splitting only happens when necessary (more than 140 characters)!</p>
+{% else %}
+    <p><b>You're not currently signed in. <a href="/twauth/login">Login</a> to start using TwitPNG</b></p>
+{% endif %}
+    <i><hr>
+        <p>Disclaimer: This tool was mainly made as a joke about Twitter's decision to embed images into timelines, but still limiting all of us to 140 characters. It's not meant to be taken/used seriously, it was literally made in a few hours after a <a href="https://twitter.com/KayinNasaki/status/395682728529498112">joke from a friend.</a> Logging in grants posting access (by necessity) to your timeline from the app, which (because of how Twitter works) lasts in perpetuity. While I promise not to do anything bad with your account (post without your express form submission using the tool, nor share any information about you to any third parties), I'd still recommend that you take a look at the <a href="https://twitter.com/settings/applications">Application control</a> page on Twitter, and revoke whatever you're not actively using (this included, once you've had your fun). Really, even if you never log in here, this might be a good time to poke at that page to see what DOES have access to your account.</p>
+        <p>All that said, this tool is provided with no warranty, and was hacked together so I can't promise that it'll work perfectly. I'll be tossing it on GitHub in a couple days to share the love.</p>
+        <p>If you want to know more about the guy who made this thing, or perhaps hire me, my contact info's all on my <a href="http://mrasm.us/about/">About Page</a>. Or just, you know... tweet at me. Heck, tweet at me to let me know you're enjoying the tool, if nothing else! :D</p>
+    </i>
+</body></html>
