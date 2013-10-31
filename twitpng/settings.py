@@ -14,7 +14,7 @@ if (os.getenv('USING_HEROKU')):
     DATABASES = {
         'default': dj_database_url.config()
     }
-    DEBUG = False
+    DEBUG = (os.environ['DJANGO_DEBUG'] == 'True')
 else:
     DEBUG = True
     DATABASES = {
