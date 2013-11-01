@@ -52,7 +52,7 @@ def post_longtweet(request):
         imgtext = wraptext(u'…' + tweetbody[len(text)-1:])
         height = len(imgtext.splitlines()) * main_font.getsize(imgtext)[1]
         result = '|'+ text +'|' + imgtext + '|'
-        img = Image.new("RGBA", (IMAGE_WIDTH*2,IMAGE_HEIGHT*2),(255,255,255,0))
+        img = Image.new("RGBA", (IMAGE_WIDTH*2,IMAGE_HEIGHT*2),(255,255,255,255))
         draw = ImageDraw.Draw(img)
         h = 0
         for line in imgtext.splitlines():
